@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:chatlify/features/auth/controller/auth_controller.dart';
 import 'package:chatlify/utils/colors.dart';
 import 'package:chatlify/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 

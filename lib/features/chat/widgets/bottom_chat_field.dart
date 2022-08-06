@@ -2,7 +2,9 @@
 import 'dart:io';
 
 import 'package:chatlify/features/chat/controller/chat_controller.dart';
+import 'package:chatlify/features/chat/widgets/message_replay_preview.dart';
 import 'package:chatlify/features/common/enums/message_enum.dart';
+import 'package:chatlify/features/common/providers/message_replay_provider.dart';
 import 'package:chatlify/utils/utils.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +17,12 @@ import 'package:permission_handler/permission_handler.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
   final String receiverUserId;
+  final bool isGroupChat;
+
   const BottomChatField({
     Key? key,
     required this.receiverUserId,
+    required this.isGroupChat,
   }) : super(key: key);
 
   @override
@@ -28,7 +33,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   bool _isShowSendButton = false;
   bool _isShowEmojiContainer = false;
   final _messageController = TextEditingController();
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
   FlutterSoundRecorder? _soundRecorder;
   bool isRecorderInit = false;
   bool isRecording = false;
@@ -55,6 +60,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
             context,
             _messageController.text.trim(),
             widget.receiverUserId,
+            widget.isGroupChat,
           );
       setState(
         () {
@@ -88,6 +94,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           file,
           widget.receiverUserId,
           messageEnum,
+          widget.isGroupChat,
         );
   }
 
@@ -134,9 +141,12 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
     final gif = await pickGIF(context);
     if (gif != null) {
       // ignore: use_build_context_synchronously
-      ref
-          .read(chatControllerProvider)
-          .sendGIFMessage(context, gif.url, widget.receiverUserId);
+      ref.read(chatControllerProvider).sendGIFMessage(
+            context,
+            gif.url,
+            widget.receiverUserId,
+            widget.isGroupChat,
+          );
     }
   }
 
@@ -150,9 +160,12 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
 
   @override
   Widget build(BuildContext context) {
+    final messageReplay = ref.watch(messageReplyProvider);
+    final isShowMessageReplay = messageReplay != null;
     final w = MediaQuery.of(context).size.width;
     return Column(
       children: [
+        isShowMessageReplay ? const MessageReplayPreview() : const SizedBox(),
         Row(
           children: [
             Expanded(

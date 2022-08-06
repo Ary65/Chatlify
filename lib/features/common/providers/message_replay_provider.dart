@@ -2,15 +2,15 @@
 import 'package:chatlify/features/common/enums/message_enum.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MessageReplay {
+class MessageReply {
   final String message;
   final bool isMe;
   final MessageEnum messageEnum;
-  MessageReplay(
+  MessageReply(
     this.message,
     this.isMe,
     this.messageEnum,
   );
 }
 
-final messageReplayProvider = StateProvider<MessageReplay?>((ref) => null);
+final messageReplyProvider = StateProvider<MessageReply?>((ref) => null);

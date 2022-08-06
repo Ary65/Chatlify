@@ -18,11 +18,9 @@ class SelectContactScreen extends ConsumerWidget {
         .selectContact(selectedContact, context);
   }
 
-  Future<void> _handleRefresh(   ) async {
+  Future<void> _handleRefresh() async {
     return await Future.delayed(
       const Duration(milliseconds: 500),
-    
-     
     );
   }
 
