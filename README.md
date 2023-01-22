@@ -1,16 +1,4 @@
-# chatlify
+# Chatlify
+## An App for Chat, Video Call, File transfer & more
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![ichat](https://user-images.githubusercontent.com/87580734/213906140-365959c3-6f57-4655-974e-7be6c2c83d96.png)
